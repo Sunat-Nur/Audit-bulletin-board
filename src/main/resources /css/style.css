@@ -1,0 +1,31 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.ui-jqgrid .ui-jqgrid-view {
+    border: 1px solid #ddd;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}
+
+.ui-jqgrid .ui-jqgrid-btable td {
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.ui-jqgrid .ui-jqgrid-pager {
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}

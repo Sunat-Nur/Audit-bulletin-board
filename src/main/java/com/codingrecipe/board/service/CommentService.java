@@ -1,6 +1,6 @@
 package com.codingrecipe.board.service;
 
-import com.codingrecipe.board.dto.CommentDTO;
+import com.codingrecipe.board.vo.CommentDTO;
 import com.codingrecipe.board.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 //import org.springframework.beans.factory.annotation.Autowired;

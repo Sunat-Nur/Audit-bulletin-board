@@ -1,7 +1,6 @@
-package com.codingrecipe.board.controller;
+package com.codingrecipe.board.web;
 
 
-//import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 

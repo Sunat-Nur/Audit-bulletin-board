@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.codingrecipe.board.dto.CommentDTO;
+import com.codingrecipe.board.vo.CommentDTO;
 
 import lombok.RequiredArgsConstructor;
 

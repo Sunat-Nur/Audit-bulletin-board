@@ -1,4 +1,4 @@
-package com.codingrecipe.board.dto;
+package com.codingrecipe.board.vo;
 
 //import lombok.Getter;
 //import lombok.Setter;
