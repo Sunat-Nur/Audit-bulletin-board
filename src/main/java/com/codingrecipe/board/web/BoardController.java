@@ -46,7 +46,7 @@ public class BoardController {
 		if (saveResult > 0) {
 			return "redirect:/board/paging";
 		} else {
-			return "save";
+			return "redirect:/";
 		}
 	}
 

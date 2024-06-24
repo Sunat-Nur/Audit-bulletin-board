@@ -1,177 +1,235 @@
-<%-- <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>index</title>
+<meta charset="UTF-8">
+<title>DataTable Example</title>
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 <style>
+body {
+    font-family: Arial, sans-serif;
+}
 
+#gridContainer {
+    width: 1300px;
+    height: 500px;
+    margin: 20px auto;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th div {
+    height: auto;
+    padding: 5px;
+}
+
+.ui-jqgrid-titlebar {
+    display: none;
+}
+
+.custom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.custom-header .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.custom-header button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.custom-header button:hover {
+    background-color: #0056b3;
+}
+
+.custom-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-search label {
+    margin-right: 10px;
+}
+
+.custom-search select, .custom-search input {
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+}
+
+.custom-search button {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    background-color: #5b5b5b;
+    color: white;
+    margin-left: 730px;
+}
+
+.custom-search button:hover {
+    background-color: #0056b3;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.button-group .newBtn {
+    background-color: #007bff;
+    padding: 3px;
+    border-radius: 3px;
+    color: white;
+    text-decoration: none;
+}
+
+.button-group .excelBtn i {
+    color: white;
+}
+
+.button-group .excelBtn {
+    background-color: #62b0ea;
+    padding: 3px;
+    color: white;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+/* Add bottom margin to the grid to create space */
+.ui-jqgrid .ui-jqgrid-bdiv {
+    margin-bottom: 300px; /* Add a large margin to create space */
+}
+
+.container-custom {
+    margin-top: 50px; /* Space between jqGrid and DataTable */
+}
+
+a.clickable-title {
+    text-decoration: none;
+    color: black; /* Make the title black */
+}
+
+a.clickable-title:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+    color: black; /* Keep the title black on hover */
+}
 </style>
-<script>
-	console.log('Context Path: ${pageContext.request.contextPath}');
-</script>
 </head>
 <body>
-	<br />
-	<h2>스프링 프레임워크입니다</h2>
-	<!-- writing -->
-	<a href="${pageContext.request.contextPath}/board/save">글작성</a>
-	<br />
-	<!-- Article list -->
-	<br />
-	<a href="${pageContext.request.contextPath}/board/">글목록</a>
-	<br />
-	<!-- paging list -->
-	<br />
-	<a href="${pageContext.request.contextPath}/board/paging">페이징</a>
-</body>
-</html>
- --%>
- 
- 
- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<html>
-<head>
-    <title>paging</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Include DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <!-- Include DataTables JS -->
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <!-- Custom CSS -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .navbar-custom {
-            background-color: #007bff;
-            margin-bottom: 20px;
-        }
-
-        .navbar-custom .navbar-nav .nav-link {
-            color: #ffffff;
-        }
-
-        .navbar-custom .navbar-nav .nav-link:hover {
-            color: #cccccc;
-        }
-
-        .container-custom {
-            margin-top: 100px; /* Space between navbar and content */
-        }
-
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-        .dataTables_wrapper .dataTables_info, 
-        .dataTables_wrapper .dataTables_paginate {
-            padding-top: 10px;
-        }
-
-        .clickable-name {
-            cursor: pointer; /* Cursor change on hover */
-            color: blue; /* Optional: change the text color to indicate it's clickable */
-        }
-
-        .clickable-name:hover {
-            text-decoration: underline; /* Optional: underline on hover */
-        }
-
-        table.dataTable thead th, table.dataTable thead td {
-            border-bottom: 1px solid #ddd;
-        }
-
-        table.dataTable.no-footer {
-            border-bottom: 1px solid #ddd;
-        }
-
-        table.dataTable tbody tr {
-            background-color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar Code -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-       <!--  <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/">집 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/board/save">추가</a>
-                </li>
-                <%-- <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/board/">글목록</a>
-                </li> --%>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/board/paging">페이징</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="찾" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">찾</button>
-            </form>
+    <div id="gridContainer">
+        <div class="custom-header">
+            <div class="search-container">
+                <div class="custom-search">
+                    <label for="searchField">Search conditions</label>
+                    <select id="searchField">
+                        <option value="title">Title</option>
+                        <option value="writer">Writer</option>
+                        <option value="registration_date">Registration Date</option>
+                    </select>
+                    <input type="text" id="searchValue">
+                    <button id="searchBtn">
+                        <i class="fa fa-search"></i> CHECK
+                    </button>
+                </div>
+            </div>
         </div>
-    </nav>
-
-    <div class="container container-custom">
-    <h3>게시판</h3>
-        <table id="dataTable" class="display">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>이름</th>
-                    <th>직겁</th>
-                    <th>날짜</th>
-                    <th>조회수</th>
-                </tr>
-            </thead>
-        </table>
+        <div class="button-group">
+            <a href="${pageContext.request.contextPath}/board/save" class="newBtn">
+                <i class="fa fa-plus"></i> NEW
+            </a>
+            <a href="#" id="excelBtn" class="excelBtn">
+                <i class="fa fa-download"></i> EXCEL
+            </a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable({
-                ajax: {
-                    url: '${pageContext.request.contextPath}/board/fetchBoardList',
-                    dataSrc: ''
-                },
-                columns: [
-                    { data: 'id' },
-                    { data: 'boardTitle' },
-                    { data: 'boardWriter', render: function(data, type, row) {
-                        return '<a href="${pageContext.request.contextPath}/board?id=' + row.id + '&page=${paging.page}" class="clickable-name">' + data + '</a>';
+            // jqGrid initialization
+            $("#jqGrid").jqGrid({
+                url: '${pageContext.request.contextPath}/board/fetchBoardList',
+                datatype: "json",
+                colModel: [
+                    { label: 'Order', name: 'id', width: 100 },
+                    { label: 'Title', name: 'boardTitle', width: 450, formatter: function(cellvalue, options, rowObject) {
+                        return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
                     }},
-                    { data: 'boardCreatedTime' },
-                    { data: 'boardHits' }
+                    /* { label: 'Writer', name: 'boardWriter', width: 200 }, */
+                    
+                    { label: 'Writer', name: 'boardWriter', width: 200, formatter: function(cellvalue, options, rowObject) {
+                        return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
+                    }},
+                    
+                    
+                    /* { label: 'Registration Date', name: 'boardCreatedTime', width: 200 }, */
+                    
+                    { label: 'Registration Date', name: 'boardCreatedTime', width: 200, formatter: function(cellvalue, options, rowObject) {
+                        return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
+                    }},
+                    
+                    
+                    { label: 'Views', name: 'boardHits', width: 100 }
                 ],
-                pagingType: 'full_numbers',
-                pageLength: 5,
-                lengthChange: false,
-                info: true,
-                autoWidth: false,
-                responsive: true,
-                language: {
-                    paginate: {
-                        first: '<<',
-                        last: '>>',
-                        next: '>',
-                        previous: '<'
-                    }
-                }
+                viewrecords: true,
+                width: 1300,
+                height: 'auto',
+                rowNum: 50,
+                pager: "#jqGridPager",
+                caption: "FAQ List"
+            });
+
+            // Search button functionality
+            $('#searchBtn').click(function() {
+                var searchField = $('#searchField').val();
+                var searchValue = $('#searchValue').val();
+                $("#jqGrid").jqGrid('setGridParam', {
+                    postData: {
+                        filters: JSON.stringify({
+                            groupOp: "AND",
+                            rules: [
+                                { field: searchField, op: "cn", data: searchValue }
+                            ]
+                        })
+                    },
+                    search: true
+                }).trigger("reloadGrid");
             });
         });
     </script>
