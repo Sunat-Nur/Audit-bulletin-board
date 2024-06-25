@@ -74,7 +74,7 @@
 </head>
 <body>
     <div class="container container-custom">
-        <h2>View Page</h2>
+        <h5>페이지 보기</h5>
         <table class="form-table">
             <tr>
                 <th>Title</th>
@@ -98,7 +98,7 @@
             </tr>
         </table>
         <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Back</a>
-        <button class="btn btn-warning" onclick="updateFn()">수정</button>
+        <!-- <button class="btn btn-warning" onclick="updateFn()">수정</button> -->
         <button class="btn btn-danger" onclick="deleteFn()">삭제</button>
 
         <h3 class="mt-4">댓글 작성</h3>

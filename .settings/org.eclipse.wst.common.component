@@ -34,7 +34,7 @@
         
         
         <property name="java-output-path" value="/finalSpring/target/classes"/>
-        <property name="context-root" value="finalSpring"/>
+        <property name="context-root" value="/"/>
                                     
     
     
