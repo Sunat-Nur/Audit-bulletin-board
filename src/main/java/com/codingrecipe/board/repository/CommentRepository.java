@@ -19,7 +19,6 @@ public class CommentRepository {
 	
     private final SqlSessionTemplate sql;
     
-    // Constructor for initializing final fields
     @Autowired
     public CommentRepository(SqlSessionTemplate sql) {
         this.sql = sql;
