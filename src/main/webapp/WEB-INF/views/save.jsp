@@ -67,7 +67,7 @@
                     <td><input type="password" name="boardPassword" required></td>
                 </tr>
                 <tr>
-                    <td>콘텐츠</td>
+                    <td>콘텐트</td>
                     <td><textarea name="boardContents" required></textarea></td>
                 </tr>
             </table>
