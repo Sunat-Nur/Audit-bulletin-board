@@ -18,18 +18,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CommentController {
 
-	private final CommentService commentService;
+    private final CommentService commentService;
 
-	@Autowired
-	public CommentController(CommentService commentService) {
-		this.commentService = commentService;
-	}
+    @Autowired
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
-	@PostMapping("/save")
-	public List<CommentDTO> save(@ModelAttribute CommentDTO commentDTO) {
-		System.out.println("commentDTO = " + commentDTO);
-		commentService.save(commentDTO);
-		List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
-		return commentDTOList;
-	}
+    @PostMapping("/save")
+    public List<CommentDTO> save(@ModelAttribute CommentDTO commentDTO) {
+        System.out.println("commentDTO = " + commentDTO);
+        commentService.save(commentDTO);
+        List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
+        return commentDTOList;
+    }
 }

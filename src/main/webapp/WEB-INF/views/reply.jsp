@@ -78,10 +78,11 @@
                         commentWriter: writer,
                         commentContents: content
                     },
-                    /* success: function(commentList) {
-                        loadComments();
-                        $('#commentForm')[0].reset();
-                    }, */
+                     success: function(commentList) {
+                    	 alert('답글을 성공적으로 추가했습니다!');
+                         // Redirect to the home page
+                         window.location.href = '${pageContext.request.contextPath}/';
+                    }, 
                     error: function() {
                         alert('Failed to add comment');
                     }
