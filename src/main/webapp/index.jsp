@@ -152,25 +152,25 @@ a.clickable-title:hover {
         <div class="custom-header">
             <div class="search-container">
                 <div class="custom-search">
-                    <label for="searchField">Search conditions</label>
+                    <label for="searchField">검색조건</label>
                     <select id="searchField">
-                        <option value="title">Title</option>
-                        <option value="writer">Writer</option>
-                        <option value="registration_date">Registration Date</option>
+                        <option value="title">제목</option>
+                        <option value="writer">작성가</option>
+                        <option value="registration_date">등록일짜</option>
                     </select>
                     <input type="text" id="searchValue">
                     <button id="searchBtn">
-                        <i class="fa fa-search"></i> CHECK
+                        <i class="fa fa-search"></i> 확인
                     </button>
                 </div>
             </div>
         </div>
         <div class="button-group">
             <a href="${pageContext.request.contextPath}/board/save" class="newBtn">
-                <i class="fa fa-plus"></i> NEW
+                <i class="fa fa-plus"></i> 신규
             </a>
             <a href="#" id="excelBtn" class="excelBtn">
-                <i class="fa fa-download"></i> EXCEL
+                <i class="fa fa-download"></i> 엑셀
             </a>
         </div>
         <table id="jqGrid"></table>
@@ -187,25 +187,25 @@ a.clickable-title:hover {
                 url: '${pageContext.request.contextPath}/board/fetchBoardList',
                 datatype: "json",
                 colModel: [
-                    { label: 'Order', name: 'id', width: 100 },
-                    { label: 'Title', name: 'boardTitle', width: 450, formatter: function(cellvalue, options, rowObject) {
+                    { label: 'No', name: 'id', width: 100 },
+                    { label: '제목', name: 'boardTitle', width: 450, formatter: function(cellvalue, options, rowObject) {
                         return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
                     }},
                     /* { label: 'Writer', name: 'boardWriter', width: 200 }, */
                     
-                    { label: 'Writer', name: 'boardWriter', width: 200, formatter: function(cellvalue, options, rowObject) {
+                    { label: '작성자', name: 'boardWriter', width: 200, formatter: function(cellvalue, options, rowObject) {
                         return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
                     }},
                     
                     
                     /* { label: 'Registration Date', name: 'boardCreatedTime', width: 200 }, */
                     
-                    { label: 'Registration Date', name: 'boardCreatedTime', width: 200, formatter: function(cellvalue, options, rowObject) {
+                    { label: '등록일짜', name: 'boardCreatedTime', width: 200, formatter: function(cellvalue, options, rowObject) {
                         return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
                     }},
                     
                     
-                    { label: 'Views', name: 'boardHits', width: 100 }
+                    { label: '조회수', name: 'boardHits', width: 100 }
                 ],
                 viewrecords: true,
                 width: 1300,

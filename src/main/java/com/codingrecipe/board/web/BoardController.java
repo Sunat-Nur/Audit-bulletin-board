@@ -25,88 +25,95 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/board")
 public class BoardController {
 
-	private BoardService boardService;
-	private final CommentService commentService;
+    private final BoardService boardService;
+    private final CommentService commentService;
 
-	// Constructor for initializing final fields
-	@Autowired
-	public BoardController(BoardService boardService, CommentService commentService) {
-		this.boardService = boardService;
-		this.commentService = commentService;
-	}
+    @Autowired
+    public BoardController(BoardService boardService, CommentService commentService) {
+        this.boardService = boardService;
+        this.commentService = commentService;
+    }
 
-	@GetMapping("/save")
-	public String saveForm() {
-		return "save";
-	}
+    @GetMapping("/save")
+    public String saveForm() {
+        return "save";
+    }
 
-	@PostMapping("/save")
-	public String save(@ModelAttribute BoardDTO boardDTO) {
-		int saveResult = boardService.save(boardDTO);
-		if (saveResult > 0) {
-			return "redirect:/board/paging";
-		} else {
-			return "redirect:/";
-		}
-	}
+    @PostMapping("/save")
+    public String save(@ModelAttribute BoardDTO boardDTO) {
+        int saveResult = boardService.save(boardDTO);
+        if (saveResult > 0) {
+            return "redirect:/board/paging";
+        } else {
+            return "redirect:/";
+        }
+    }
 
-	@GetMapping("/fetchBoardList")
-	@ResponseBody
-	public List<BoardDTO> fetchBoardList() {
-		return boardService.findAll();
-	}
+    @GetMapping("/fetchBoardList")
+    @ResponseBody
+    public List<BoardDTO> fetchBoardList() {
+        return boardService.findAll();
+    }
 
-	@GetMapping("/")
-	public String findAll(Model model) {
-		List<BoardDTO> boardDTOList = boardService.findAll();
-		model.addAttribute("boardList", boardDTOList);
-		return "list";
-	}
+    @GetMapping("/")
+    public String findAll(Model model) {
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardDTOList);
+        return "list";
+    }
 
-	@GetMapping
-	public String findById(@RequestParam("id") Long id,
-			@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
-		boardService.updateHits(id);
-		BoardDTO boardDTO = boardService.findById(id);
-		model.addAttribute("board", boardDTO);
-		model.addAttribute("page", page);
-		List<CommentDTO> commentDTOList = commentService.findAll(id);
-		model.addAttribute("commentList", commentDTOList);
-		return "detail";
-	}
+    @GetMapping
+    public String findById(@RequestParam("id") Long id,
+                           @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+        boardService.updateHits(id);
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDTOList);
+        return "detail";
+    }
 
-	@GetMapping("/delete")
-	public String delete(@RequestParam("id") Long id) {
-		boardService.delete(id);
-		return "redirect:/";
-	}
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        boardService.delete(id);
+        return "redirect:/";
+    }
 
-	@GetMapping("/update")
-	public String updateForm(@RequestParam("id") Long id, Model model) {
-		BoardDTO boardDTO = boardService.findById(id);
-		model.addAttribute("board", boardDTO);
-		return "update";
-	}
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "update";
+    }
 
-	@PostMapping("/update")
-	public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
-		boardService.update(boardDTO);
-		BoardDTO dto = boardService.findById(boardDTO.getId());
-		model.addAttribute("board", dto);
-		return "detail";
-//        return "redirect:/board?id="+boardDTO.getId();
-	}
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+        boardService.update(boardDTO);
+        BoardDTO dto = boardService.findById(boardDTO.getId());
+        model.addAttribute("board", dto);
+        return "detail";
+    }
 
-	// /board/paging?page=2
-	@GetMapping("/paging")
-	public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-		System.out.println("page = " + page);
-		List<BoardDTO> pagingList = boardService.pagingList(page);
-		System.out.println("pagingList = " + pagingList);
-		PageDTO pageDTO = boardService.pagingParam(page);
-		model.addAttribute("boardList", pagingList);
-		model.addAttribute("paging", pageDTO);
-		return "paging";
-	}
+    @GetMapping("/reply")
+    public String reply(@RequestParam Long id, Model model) {
+        // Retrieve board and comments data
+        BoardDTO board = boardService.findById(id);
+        List<CommentDTO> commentList = commentService.findAll(id);
+        
+        // Add attributes to model
+        model.addAttribute("board", board);
+        model.addAttribute("commentList", commentList);
+        
+        return "reply"; // Ensure this matches the JSP file name
+    }
 
+    @GetMapping("/paging")
+    public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        List<BoardDTO> pagingList = boardService.pagingList(page);
+        PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList", pagingList);
+        model.addAttribute("paging", pageDTO);
+        return "paging";
+    }
 }

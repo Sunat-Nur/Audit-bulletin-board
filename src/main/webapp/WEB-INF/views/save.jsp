@@ -55,24 +55,24 @@
         <form id="boardForm">
             <table class="form-table">
                 <tr>
-                    <td>Title</td>
+                    <td>제목</td>
                     <td><input type="text" name="boardTitle" required></td>
                 </tr>
                 <tr>
-                    <td>Writer</td>
+                    <td>작성자</td>
                     <td><input type="text" name="boardWriter" required></td>
                 </tr>
                 <tr>
-                    <td>Password</td>
+                    <td>비밀번호</td>
                     <td><input type="password" name="boardPassword" required></td>
                 </tr>
                 <tr>
-                    <td>Contents</td>
+                    <td>콘텐츠</td>
                     <td><textarea name="boardContents" required></textarea></td>
                 </tr>
             </table>
             <button type="submit" class="btn btn-primary mt-3">제출</button>
-            <a href="${pageContext.request.contextPath}/" class="btn btn-secondary mt-3">Back</a>
+            <a href="${pageContext.request.contextPath}/" class="btn btn-secondary mt-3">목록</a>
         </form>
     </div>
 
