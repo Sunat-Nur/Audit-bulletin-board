@@ -1,273 +1,274 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>DataTable Example</title>
 <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
 <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
-    href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background-color: white; /* Set the background color to white */
-    font-size: 16px; /* Increase the base font size */
+	font-family: Arial, sans-serif;
+	background-color: white; 
+	font-size: 16px; 
 }
 
 #gridContainer {
-    width: 1300px;
-    height: 500px;
-    margin: 20px auto;
+	width: 1300px;
+	height: 500px;
+	margin: 20px auto;
 }
 
 .ui-jqgrid .ui-jqgrid-htable th div {
-    height: auto;
-    padding: 10px; /* Increase padding */
-    font-size: 18px; /* Increase header font size */
-    color: black; /* Make the header text color black */
+	height: auto;
+	padding: 10px;
+	font-size: 18px;
+	color: black; 
 }
 
 .ui-jqgrid-titlebar {
-    display: none;
+	display: none;
 }
 
 .custom-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f5f5f5;
-    color: #333;
-    padding: 10px;
-    border-bottom: 2px solid #ccc;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    font-size: 18px; /* Increase custom header font size */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f5f5f5;
+	color: #333;
+	padding: 10px;
+	border-bottom: 2px solid #ccc;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	font-size: 18px; 
 }
 
 .custom-header .buttons {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 .custom-header button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px; /* Increase button padding */
-    border-radius: 3px;
-    font-size: 16px; /* Increase button font size */
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px; 
+	border-radius: 3px;
+	font-size: 16px;
 }
 
 .custom-header button:hover {
-    background-color: #0056b3;
+	background-color: #0056b3;
 }
 
 .custom-search {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
 }
 
 .search-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .custom-search label {
-    margin-right: 10px;
-    font-size: 16px; /* Increase label font size */
+	margin-right: 10px;
+	font-size: 16px; 
 }
 
 .custom-search select, .custom-search input {
-    padding: 10px; /* Increase padding */
-    border-radius: 3px;
-    border: 1px solid #ced4da;
-    font-size: 16px; /* Increase input and select font size */
+	padding: 10px; /* Increase padding */
+	border-radius: 3px;
+	border: 1px solid #ced4da;
+	font-size: 16px; 
 }
 
 .custom-search button {
-    padding: 10px; /* Increase button padding */
-    border-radius: 3px;
-    border: 1px solid #ced4da;
-    background-color: #5b5b5b;
-    color: white;
-    font-size: 16px; /* Increase button font size */
+	padding: 10px; 
+	border-radius: 3px;
+	border: 1px solid #ced4da;
+	background-color: #5b5b5b;
+	color: white;
+	font-size: 16px; 
 }
 
 .custom-search button:hover {
-    background-color: #0056b3;
+	background-color: #0056b3;
 }
 
 .button-group {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    flex-direction: row-reverse;
-    margin-top: 15px;
-    margin-bottom: 15px;
+	display: flex;
+	gap: 10px;
+	align-items: flex-end;
+	flex-direction: row-reverse;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .button-group .newBtn {
-    background-color: #007bff;
-    padding: 10px; /* Increase padding */
-    border-radius: 3px;
-    color: white;
-    text-decoration: none;
-    font-size: 16px; /* Increase font size */
+	background-color: #007bff;
+	padding: 10px; 
+	border-radius: 3px;
+	color: white;
+	text-decoration: none;
+	font-size: 16px; 
 }
 
 .button-group .excelBtn i {
-    color: white;
-    font-size: 16px; /* Increase icon font size */
+	color: white;
+	font-size: 16px; 
 }
 
 .button-group .excelBtn {
-    background-color: #62b0ea;
-    padding: 10px; /* Increase padding */
-    color: white;
-    border-radius: 3px;
-    text-decoration: none;
-    font-size: 16px; /* Increase font size */
+	background-color: #62b0ea;
+	padding: 10px; 
+	color: white;
+	border-radius: 3px;
+	text-decoration: none;
+	font-size: 16px; 
 }
 
-/* Add bottom margin to the grid to create space */
+
 .ui-jqgrid .ui-jqgrid-bdiv {
-    margin-bottom: 300px; /* Add a large margin to create space */
+	margin-bottom: 300px; 
 }
 
 .container-custom {
-    margin-top: 50px; /* Space between jqGrid and DataTable */
+	margin-top: 50px; 
 }
 
 a.clickable-title {
-    text-decoration: none;
-    color: black; /* Make the title black */
-    font-size: 16px; /* Increase the title font size */
+	text-decoration: none;
+	color: black; 
+	font-size: 16px;
 }
 
 a.clickable-title:hover {
-    text-decoration: none; /* Ensure no underline on hover */
-    color: black; /* Keep the title black on hover */
+	text-decoration: none; 
+	color: black; 
 }
 
 .comment-item {
-    margin-left: 7%;
-    color: black; /* Set the text color to black */
-    padding: 5px 0;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-bottom: 5px;
-    padding-left: 5px; /* Add padding inside the box */
+	margin-left: 7%;
+	color: black; 
+	padding: 5px 0;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-bottom: 5px;
+	padding-left: 5px; 
+	border-bottom: 1px solid #ddd; 
 }
 
 .comment-item a {
-    color: black;
-    text-decoration: none;
+	color: black;
+	text-decoration: none;
 }
 
 .comment-item a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .jqGrid-col-title {
-    font-size: 18px; /* Set the font size to 18px */
-    font-weight: bold; /* Make the header bold */
-    color: black; /* Make the header text color black */
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
 }
 
 .jqGrid-col-others {
-    font-size: 16px; /* Set the font size to 16px */
-    font-weight: bold; /* Make the text bold */
-    color: black; /* Make the text color black */
+	font-size: 16px;
+	font-weight: bold;
+	color: black;
 }
 
 /* Indentation for nested comments */
 .comment-item.level-1 {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .comment-item.level-2 {
-    margin-left: 15px;
+	margin-left: 20px;
 }
 
 .comment-item.level-3 {
-    margin-left: 20px;
+	margin-left: 25px;
 }
 
 .comment-item.level-4 {
-    margin-left: 25px;
+	margin-left: 30px;
 }
 
 .comment-item.level-5 {
-    margin-left: 30px;
+	margin-left: 35px;
 }
 
 .comment-item.level-6 {
-    margin-left: 35px;
+	margin-left: 40px;
 }
 
 .comment-item.level-7 {
-    margin-left: 40px;
+	margin-left: 45px;
 }
 
 .comment-item.level-8 {
-    margin-left: 45px;
+	margin-left: 50px;
 }
 
 .comment-item.level-9 {
-    margin-left: 50px;
+	margin-left: 55px;
 }
 
 /* Add more levels if needed */
-
 .toggle-comments {
-    display: none; /* Hide the toggle button but still make it functional */
+	display: none;
+	
 }
 </style>
 </head>
 <body>
-    <div id="gridContainer">
-    <h4>1. 메인 페이지</h4>
-        <div class="custom-header">
-            <div class="search-container">
-                <div class="custom-search">
-                    <label for="searchField">검색조건</label> <select id="searchField">
-                        <option value="title">제목</option>
-                        <option value="writer">작성자</option>
-                        <option value="registration_date">작성일</option>
-                    </select> <input type="text" id="searchValue">
-                    <button id="searchBtn">
-                        <i class="fa fa-search"></i> 확인
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="button-group">
-            <a href="${pageContext.request.contextPath}/board/save"
-                class="newBtn"> <i class="fa fa-plus"></i> 신규
-            </a> <a href="#" id="excelBtn" class="excelBtn"> <i
-                class="fa fa-download"></i> 엑셀
-            </a>
-        </div>
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
-    <script
-        src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script>
+	<div id="gridContainer">
+		<h4>1. 메인 페이지</h4>
+		<div class="custom-header">
+			<div class="search-container">
+				<div class="custom-search">
+					<label for="searchField">검색조건</label> <select id="searchField">
+						<option value="title">제목</option>
+						<option value="writer">작성자</option>
+						<option value="registration_date">작성일</option>
+					</select> <input type="text" id="searchValue">
+					<button id="searchBtn">
+						<i class="fa fa-search"></i> 확인
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="button-group">
+			<a href="${pageContext.request.contextPath}/board/save"
+				class="newBtn"> <i class="fa fa-plus"></i> 신규
+			</a> <a href="#" id="excelBtn" class="excelBtn"> <i
+				class="fa fa-download"></i> 엑셀
+			</a>
+		</div>
+		<table id="jqGrid"></table>
+		<div id="jqGridPager"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script>
     $(document).ready(function() {
         $("#jqGrid").jqGrid({
             url: '${pageContext.request.contextPath}/board/fetchBoardList',
@@ -296,7 +297,7 @@ a.clickable-title:hover {
             pager: "#jqGridPager",
             caption: "FAQ List"
         });
-
+/* 
         // Toggle comments visibility
         $(document).on('click', '.toggle-comments', function() {
             const $comments = $(this).closest('tr').find('.comment-item');
@@ -308,7 +309,7 @@ a.clickable-title:hover {
                 $row.css('background-color', '');
             }
             $(this).find('i').toggleClass('fa-comments fa-comments-o');
-        });
+        }); */
 
         // Show all comments by default
         $(".comment-item").show();

@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container">
-        <h4>댓글에 답기</h4>
+        <h4>4.답글에 답글</h4>
         <form id="commentForm">
             <input type="hidden" id="postId" name="postId" value="${comment.boardId}">
             <input type="hidden" id="parentCommentId" name="parentCommentId" value="${comment.id}">
@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="text-right">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">클릭</button>
                     </td>
                 </tr>
             </table>
@@ -76,11 +76,11 @@
                         commentContents: content
                     },
                     success: function(commentList) {
-                        alert('Reply added successfully!');
+                        alert('답글이 추가되었습니다.!');
                         window.location.href = '${pageContext.request.contextPath}/';
                     }, 
                     error: function() {
-                        alert('Failed to add reply.');
+                        alert('답글을 추가하지 못했습니다.');
                     }
                 });
             });
