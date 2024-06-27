@@ -20,7 +20,7 @@
 </head>
 <body>
     <div class="container">
-        <h4>3. 페이지에서 답변</h4>
+        <h4>3. 페이지 답변</h4>
         <form id="commentForm">
             <input type="hidden" id="postId" name="postId" value="${board.id}">
             <table class="table table-bordered">
@@ -84,7 +84,7 @@
                          window.location.href = '${pageContext.request.contextPath}/';
                     }, 
                     error: function() {
-                        alert('Failed to add comment');
+                        alert('댓글을 추가하지 못했습니다.');
                     }
                 });
             });

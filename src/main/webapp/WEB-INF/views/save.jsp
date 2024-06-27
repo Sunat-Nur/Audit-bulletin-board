@@ -14,7 +14,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fffff;
+            background-color: #ffffff;
         }
 
         .container-custom {
@@ -72,7 +72,7 @@
                 </tr>
             </table>
             <button type="submit" class="btn btn-primary mt-3">제출</button>
-            <a href="${pageContext.request.contextPath}/" class="btn btn-secondary mt-3">목록</a>
+            <a href="${pageContext.request.contextPath}/board" class="btn btn-secondary mt-3">목록</a>
         </form>
     </div>
 
@@ -87,7 +87,7 @@
                             data: $(form).serialize(),
                             success: function (response) {
                                 alert('데이터가 성공적으로 저장되었습니다!');
-                                // Redirect to the home page
+                                // Redirect to the board list page
                                 window.location.href = '${pageContext.request.contextPath}/';
                             },
                             error: function (xhr, status, error) {

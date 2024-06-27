@@ -1,14 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Comment">
-    <insert id="save" parameterType="comment">
-        insert into comment_table(commentWriter, commentContents, boardId)
-        values(#{commentWriter}, #{commentContents}, #{boardId})
+    <insert id="save" parameterType="com.codingrecipe.board.vo.CommentDTO">
+        insert into comment_table(commentWriter, commentContents, boardId, parentCommentId)
+        values(#{commentWriter}, #{commentContents}, #{boardId}, #{parentCommentId})
     </insert>
 
-    <select id="findAll" parameterType="Long" resultType="comment">
+    <select id="findById" parameterType="long" resultType="com.codingrecipe.board.vo.CommentDTO">
+        SELECT * FROM comment_table WHERE id = #{id}
+    </select>
+
+    <select id="findAll" parameterType="Long" resultType="com.codingrecipe.board.vo.CommentDTO">
         select * from comment_table where boardId=#{boardId} order by id desc
+    </select>
+    
+    <select id="selectNestedComments" parameterType="Long" resultType="com.codingrecipe.board.vo.CommentDTO">
+        WITH RECURSIVE comment_hierarchy AS (
+            SELECT 
+                id,
+                commentWriter,
+                commentContents,
+                boardId,
+                parentCommentId,
+                commentCreatedTime,
+                0 AS depth
+            FROM comment_table
+            WHERE boardId = #{boardId} AND parentCommentId IS NULL
+            
+            UNION ALL
+            
+            SELECT 
+                c.id,
+                c.commentWriter,
+                c.commentContents,
+                c.boardId,
+                c.parentCommentId,
+                c.commentCreatedTime,
+                ch.depth + 1
+            FROM comment_table c
+            INNER JOIN comment_hierarchy ch ON ch.id = c.parentCommentId
+        )
+        SELECT * FROM comment_hierarchy ORDER BY depth, commentCreatedTime;
     </select>
 </mapper>

@@ -11,19 +11,28 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CommentService {
+
+	private final CommentRepository commentRepository;
+
+	// Constructor for initializing final fields
+	public CommentService(CommentRepository commentRepository) {
+		this.commentRepository = commentRepository;
+	}
+
+	public void save(CommentDTO commentDTO) {
+		commentRepository.save(commentDTO);
+	}
+
+	public List<CommentDTO> findAll(Long boardId) {
+		return commentRepository.findAll(boardId);
+	}
+
+	public CommentDTO findById(Long id) {
+		return commentRepository.findById(id);
+	}
 	
-    private final CommentRepository commentRepository;
-
-    // Constructor for initializing final fields
-    public CommentService(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
-    
-    public void save(CommentDTO commentDTO) {
-        commentRepository.save(commentDTO);
-    }
-
-    public List<CommentDTO> findAll(Long boardId) {
-        return commentRepository.findAll(boardId);
-    }
+	// Method to fetch nested comments
+		public List<CommentDTO> getNestedComments(Long boardId) {
+			return commentRepository.selectNestedComments(boardId);
+		}
 }

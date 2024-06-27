@@ -14,7 +14,6 @@
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
-
 <style>
 body {
 	font-family: Arial, sans-serif;
@@ -181,6 +180,7 @@ a.clickable-title:hover {
 </head>
 <body>
 	<div id="gridContainer">
+	<h4>1. 메인 페이지</h4>
 		<div class="custom-header">
 			<div class="search-container">
 				<div class="custom-search">
@@ -212,38 +212,38 @@ a.clickable-title:hover {
 	<script
 		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 	<script>
-	$(document).ready(function() {
-	    // jqGrid initialization
-	    $("#jqGrid").jqGrid({
-	        url: '${pageContext.request.contextPath}/board/fetchBoardList',
-	        datatype: "json",
-	        colModel: [
-	            { label: 'No', name: 'id', width: 100, classes: 'jqGrid-col-title' },
-	            { label: '제목', name: 'boardTitle', width: 450, classes: 'jqGrid-col-others', formatter: function(cellvalue, options, rowObject) {
-	                let commentsHtml = '';
-	                if (rowObject.commentList) {
-	                    rowObject.commentList.forEach(comment => {
-	                        commentsHtml += '<div class="comment-item"><a href="${pageContext.request.contextPath}/recomment?id=' + comment.id + '"><span style="color: black;">L</span> <span style="color: black;">' + comment.commentWriter + '</span></a></div>';
-	                    });
-	                }
-	                return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a><br>' + commentsHtml;
-	            }},
-	            { label: '작성자', name: 'boardWriter', width: 200, classes: 'jqGrid-col-others', formatter: function(cellvalue, options, rowObject) {
-	                return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
-	            }},
-	            { label: '등록일짜', name: 'boardCreatedTime', width: 200, classes: 'jqGrid-col-others', formatter: function(cellvalue, options, rowObject) {
-	                return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
-	            }},
-	            { label: '조회수', name: 'boardHits', width: 100, classes: 'jqGrid-col-title' }
-	        ],
-	        viewrecords: true,
-	        width: 1300,
-	        height: 'auto',
-	        rowNum: 50,
-	        pager: "#jqGridPager",
-	        caption: "FAQ List"
-	    });
-	});
-	</script>
+    $(document).ready(function() {
+        // jqGrid initialization
+        $("#jqGrid").jqGrid({
+            url: '${pageContext.request.contextPath}/board/fetchBoardList',
+            datatype: "json",
+            colModel: [
+                { label: '번호', name: 'id', width: 100, classes: 'jqGrid-col-title' },
+                { label: '제목', name: 'boardTitle', width: 450, classes: 'jqGrid-col-others', formatter: function(cellvalue, options, rowObject) {
+                    let commentsHtml = '';
+                    if (rowObject.commentList) {
+                        rowObject.commentList.forEach(comment => {
+                            commentsHtml += '<div class="comment-item"><a href="${pageContext.request.contextPath}/recommend?id=' + comment.id + '"><span style="color: black;">L [Re]</span> <span style="color: black;">' + comment.commentWriter + '</span></a></div>';
+                        });
+                    }
+                    return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a><br>' + commentsHtml;
+                }},
+                { label: '작성자', name: 'boardWriter', width: 200, classes: 'jqGrid-col-others', formatter: function(cellvalue, options, rowObject) {
+                    return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
+                }},
+                { label: '작성일자', name: 'boardCreatedTime', width: 200, classes: 'jqGrid-col-others', formatter: function(cellvalue, options, rowObject) {
+                    return '<a href="${pageContext.request.contextPath}/board?id=' + rowObject.id + '" class="clickable-title">' + cellvalue + '</a>';
+                }},
+                { label: '조회수', name: 'boardHits', width: 100, classes: 'jqGrid-col-title' }
+            ],
+            viewrecords: true,
+            width: 1300,
+            height: 'auto',
+            rowNum: 50,
+            pager: "#jqGridPager",
+            caption: "FAQ List"
+        });
+    });
+    </script>
 </body>
 </html>

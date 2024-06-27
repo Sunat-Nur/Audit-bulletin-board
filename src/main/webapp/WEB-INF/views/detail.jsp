@@ -66,7 +66,7 @@
                 </td>
             </tr>
             <tr>
-                <th>등록일짜</th>
+                <th>작성일자</th>
                 <td>
                     <input type="text" class="form-control" value="${board.boardCreatedTime}" readonly>
                 </td>
@@ -78,7 +78,7 @@
                 </td>
             </tr>
             <tr>
-                <th>콘텐츠</th>
+                <th>콘텐트</th>
                 <td>
                     <textarea class="form-control" readonly>${board.boardContents}</textarea>
                 </td>
