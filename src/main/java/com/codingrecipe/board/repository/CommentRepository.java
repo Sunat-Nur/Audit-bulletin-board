@@ -38,4 +38,5 @@ public class CommentRepository {
 	public List<CommentDTO> selectNestedComments(Long boardId) {
 		return sql.selectList("Comment.selectNestedComments", boardId);
 	}
+	
 }

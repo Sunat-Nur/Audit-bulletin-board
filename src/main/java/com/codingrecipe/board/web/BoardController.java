@@ -107,12 +107,21 @@ public class BoardController {
 		return "reply"; // Ensure this matches the JSP file name
 	}
 
+//	@GetMapping("/recommend")
+//	public String recommend(@RequestParam("id") Long id, Model model) {
+//		CommentDTO comment = commentService.findById(id);
+//		BoardDTO board = boardService.findById(comment.getBoardId());
+//		model.addAttribute("board", board);
+//		model.addAttribute("comment", comment);
+//		return "recommend";
+//	}
+
 	@GetMapping("/recommend")
-	public String recommend(@RequestParam("id") Long id, Model model) {
+	public String recommend(@RequestParam("id") Long id, @RequestParam("boardId") Long boardId, Model model) {
 		CommentDTO comment = commentService.findById(id);
-		BoardDTO board = boardService.findById(comment.getBoardId());
+		BoardDTO board = boardService.findById(boardId);
 		model.addAttribute("board", board);
 		model.addAttribute("comment", comment);
-		return "recommend";
+		return "recommend"; // Ensure this matches the JSP file name
 	}
 }

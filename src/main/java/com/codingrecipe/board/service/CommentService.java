@@ -30,9 +30,10 @@ public class CommentService {
 	public CommentDTO findById(Long id) {
 		return commentRepository.findById(id);
 	}
-	
+
 	// Method to fetch nested comments
-		public List<CommentDTO> getNestedComments(Long boardId) {
-			return commentRepository.selectNestedComments(boardId);
-		}
+	public List<CommentDTO> getNestedComments(Long boardId) {
+		return commentRepository.selectNestedComments(boardId);
+	}
+
 }

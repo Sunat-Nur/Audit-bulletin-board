@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>detail.jsp</title>
@@ -68,7 +69,7 @@
             <tr>
                 <th>작성일자</th>
                 <td>
-                    <input type="text" class="form-control" value="${board.boardCreatedTime}" readonly>
+                    <input type="text" class="form-control" value="<fmt:formatDate value='${board.boardCreatedTime}' pattern='yyyy-MM-dd' />" readonly>
                 </td>
             </tr>
             <tr>
@@ -88,11 +89,9 @@
             <button class="btn btn-primary btn-custom" onclick="replyFn()">답글</button>
         </div>
     </div>
-        <!-- Load jQuery first -->
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Load Bootstrap and other dependencies after jQuery -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script>
         const listFn = () => {
             location.href = "${pageContext.request.contextPath}/";
@@ -109,6 +108,4 @@
         }
     </script>
 </body>
-</html> 
-
-
+</html>

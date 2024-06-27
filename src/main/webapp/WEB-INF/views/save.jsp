@@ -2,15 +2,10 @@
 <html>
 <head>
     <title>Save</title>
-    <!-- Include Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Include jQuery Validation Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <!-- Custom CSS -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,8 +66,8 @@
                     <td><textarea name="boardContents" required></textarea></td>
                 </tr>
             </table>
-            <button type="submit" class="btn btn-primary mt-3">제출</button>
-            <a href="${pageContext.request.contextPath}/board" class="btn btn-secondary mt-3">목록</a>
+            <button type="submit" class="btn btn-primary mt-3">클릭</button>
+            <a href="${pageContext.request.contextPath}/" class="btn btn-secondary mt-3">목록</a>
         </form>
     </div>
 

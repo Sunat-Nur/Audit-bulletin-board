@@ -54,4 +54,5 @@ public class CommentController {
 		List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
 		return commentDTOList;
 	}
+
 }
